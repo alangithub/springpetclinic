@@ -11,5 +11,11 @@ pipeline {
                 sh 'mvn --version'
             }
         }
+        stage('Docker Build') {
+            agent any
+            steps {
+               sh 'docker build -t alandockerhub/spring-petclinic:latest .'
+            }
+        }
     }
 }
