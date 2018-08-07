@@ -4,7 +4,7 @@ pipeline {
         stage('Back-end') {
             agent {
                docker { 
-                  image 'image maven:latest' 
+                  image 'maven:latest' 
                }
             }
             steps {
