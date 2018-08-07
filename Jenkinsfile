@@ -23,7 +23,6 @@ pipeline {
             steps {
                withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
                   sh 'docker push alandockerhub/spring-petclinic:latest'  
-               } 
             }
     }
 }
