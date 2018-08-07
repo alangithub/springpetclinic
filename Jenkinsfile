@@ -4,11 +4,11 @@ pipeline {
         stage('Back-end') {
             agent {
                docker { 
-                  image 'maven:latest' 
+                  image 'maven:3.5.0'
                }
             }
             steps {
-                sh 'mvn --version'
+                sh 'mvn clean install'
             }
         }
         stage('Docker Build') {
