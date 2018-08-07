@@ -17,5 +17,13 @@ pipeline {
                sh 'docker build -t shanem/spring-petclinic:latest .'
             }
         }
+
+        stage('Docker Push') {
+            agent any
+            steps {
+               withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+                  sh 'docker push alandockerhub/spring-petclinic:latest'  
+               } 
+            }
     }
 }
