@@ -24,7 +24,8 @@ pipeline {
         stage('Docker Push') {
             agent any
             steps {
-               withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+               withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
+                  sh 'docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"'
                   sh 'docker push alandockerhub/spring-petclinic:latest'  
                }
             }
