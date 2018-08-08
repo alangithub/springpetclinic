@@ -18,6 +18,7 @@ pipeline {
             }
         }
 
+        /* 
         stage('Docker Push') {
             agent any
             steps {
@@ -26,5 +27,6 @@ pipeline {
                }
             }
         }
+        */
     }
 }
