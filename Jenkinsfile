@@ -6,7 +6,7 @@ pipeline {
         stage('Back-end') {
             agent {
                docker { 
-                  image 'maven:alphine'
+                  image 'maven:3-alpine'
                }
             }
             steps {
