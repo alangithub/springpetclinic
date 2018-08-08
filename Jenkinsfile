@@ -6,7 +6,7 @@ pipeline {
         stage('Back-end') {
             agent {
                docker { 
-                  image 'maven:3-alpine'
+                  image 'maven:3.5.0'
                }
             }
             steps {
@@ -14,5 +14,24 @@ pipeline {
             }
         }
 
+        stage('Docker Build') {
+            agent any
+            steps {
+               sh 'docker build -t alandockerhub/spring-petclinic:latest .'
+            }
+        }
+
+        stage('Docker Push') {
+            agent any
+            steps {
+               withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+                  sh 'docker push alandockerhub/spring-petclinic:latest'  
+               }
+            }
+        }
+
     }
 }
+
+
+
